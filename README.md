@@ -83,5 +83,5 @@ weather-frontend-m2/ │
 ## Cómo usar
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/usuario/weather-frontend-m2.git
+   git clone https://github.com/DayneVidal88/weather-frontend-m2.git
 
