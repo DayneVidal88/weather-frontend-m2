@@ -1,0 +1,98 @@
+/* Fuente y colores base */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #22afe7, #f0f8ff);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+  background: url("../img/cielo.png") no-repeat center center;
+  background-size: cover;
+  color: rgb(42, 42, 42);
+}
+
+.navbar .nav-link {
+  color: #292929 !important;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+.navbar-brand {
+  color: #62a5e4 !important; 
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4); /* mejora la legibilidad sobre fondo claro */
+}
+
+/* Títulos */
+h2, h3, h4 {
+  font-weight: 600;
+  color: #004080;
+}
+
+/* Cards de clima */
+.card {
+  border-radius: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/*Color según clima*/
+.card-clear {
+  background-color: #87ceeb !important;
+  color: #fff !important;
+}
+.card-cloudy {
+  background-color: #b0c4de !important; /* gris nublado */
+  color: #333 !important;
+}
+.card-rainy {
+  background-color: #5f9ea0 !important; /* lluvia */
+  color: #fff !important;
+}
+.card-storm {
+  background-color: #3c3c3c !important; /* tormenta */
+  color: #fff !important;
+}
+
+/* Iconos de clima dentro de las cards */
+.card img {
+  width: 80px;
+  height: 80px;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #0077b6;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 20px;
+}
+
+.btn-primary:hover {
+  background-color: #023e8a;
+}
+
+/* Footer */
+footer {
+  margin-top: auto;
+  background: #f8f9fa;
+  border-top: 1px solid #ddd;
+}
+
+/* Responsive ajustes */
+@media (max-width: 420px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+  .card img {
+    width: 60px;
+    height: 60px;
+  }
+}

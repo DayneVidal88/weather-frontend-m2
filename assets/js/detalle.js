@@ -1,8 +1,8 @@
-const apiKey = "437347debbfcbe7d1d65cfd7e0dc54ac"; // Reemplaza con tu API Key de OpenWeatherMap
+const apiKey = "437347debbfcbe7d1d65cfd7e0dc54ac"; // API Key de OpenWeatherMap
 
 // Obtener ciudad desde la URL (?city=Nombre)
 const params = new URLSearchParams(window.location.search);
-const ciudad = params.get("city") || "Santiago";
+const ciudad = params.get("city") || "Quilpué";
 
 // Actualizar título
 document.getElementById("titulo").textContent = `${ciudad} – Detalle del Clima`;
@@ -21,6 +21,20 @@ fetch(urlActual)
     document.getElementById("estado").textContent = data.weather[0].description;
     document.getElementById("humedad").textContent = `Humedad: ${data.main.humidity}%`;
     document.getElementById("viento").textContent = `Viento: ${data.wind.speed} km/h`;
+
+    // Aplicar color dinámico al contenedor principal del clima actual
+    const descripcion = data.weather[0].description.toLowerCase();
+    const detalleCard = document.getElementById("detalle-card"); // asegúrate de tener un div con id="detalle-card"
+
+    if (descripcion.includes("claro")) {
+      detalleCard.classList.add("card-clear");
+    } else if (descripcion.includes("nube")) {
+      detalleCard.classList.add("card-cloudy");
+    } else if (descripcion.includes("lluvia")) {
+      detalleCard.classList.add("card-rainy");
+    } else if (descripcion.includes("tormenta")) {
+      detalleCard.classList.add("card-storm");
+    }
   })
   .catch(err => console.error("Error clima actual:", err));
 
@@ -42,10 +56,20 @@ fetch(urlForecast)
 
     Object.keys(dias).forEach(dia => {
       const info = dias[dia];
+      const descripcion = info.weather[0].description.toLowerCase();
+
+      // Determinar clase de color según clima
+      const cardColor = descripcion.includes("claro") ? "card-clear"
+                     : descripcion.includes("nube") ? "card-cloudy"
+                     : descripcion.includes("lluvia") ? "card-rainy"
+                     : descripcion.includes("tormenta") ? "card-storm"
+                     : "";
+
       const card = document.createElement("div");
       card.className = "col-sm-6 col-md-4 mb-3";
+
       card.innerHTML = `
-        <div class="card text-center">
+        <div class="card text-center ${cardColor}">
           <div class="card-body">
             <h5 class="card-title">${dia}</h5>
             <p>
@@ -55,6 +79,7 @@ fetch(urlForecast)
           </div>
         </div>
       `;
+
       pronosticoContainer.appendChild(card);
     });
   })
